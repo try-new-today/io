@@ -48,43 +48,11 @@ background-size: cover;
  setTimeout(function(){return true;},300000);
 
  }
-/*
-function codeAddress1(inpCHID,inpCHNAME){
-	alert(document.getElementById('DOMAIN').value);
 
-codeAddress1(inpCHID,inpCHNAME,document.getElementById('DOMAIN').value);
-}
-*/
 function codeAddress1(inpCHID,inpCHNAME,inpDomain) {	
  	var dateInpStr = document.getElementById('SDATE').value;  
 
-/*	
-//var startdt = new Date(dateInpStr);
-//var enddt = new Date(dateInpStr);
-
-var startdt =  new Date(Date.parse(dateInpStr));
-var enddt =  new Date(Date.parse(dateInpStr));
-
-//alert(startdt.getTime());
-
-startdt.setMinutes( startdt.getMinutes() - 1 );
-enddt.setMinutes( enddt.getMinutes() + 31 );
-
-const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-];
-*/
-//alert(startdt.getTime());
-
-//var URL1 = "chrome-extension://emnphkkblegpebimobpbekeedfgemhof/player.html#https://catchup.yuppcdn.net/amazonv2/20/" + inpCHNAME + "/" + startdt.getDate() + monthNames[startdt.getMonth()] + startdt.getFullYear() + "/playlist/" + startdt.getTime() + "-" + enddt.getTime() + "-master/master.m3u8";
-//var URL1 = "https://catchup.yuppcdn.net/amazonv2/20/" + inpCHNAME + "/" + startdt.getDate() + monthNames[startdt.getMonth()] + startdt.getFullYear() + "/playlist/" + startdt.getTime() + "-" + enddt.getTime() + "-master/master.m3u8";
 var URL1 = "https://www.thiraisix.com/v/vijay/" + dateInpStr + "bb/720/playlist.m3u8";
-//alert(URL1);	
-//alert(URL1);	
-//var CHID = inpCHID;
-//var CHNAME = inpCHNAME;
-//var video1 = document.getElementById('player1');
-//video1.src = URL1;
 
 var video = document.getElementById('player1');
 var mp4Vid = document.getElementById('mp4Source');
@@ -98,34 +66,7 @@ video.webkitRequestFullScreen();
 
 function codeAddress2(inpCHID,inpCHNAME,inpDomain) {	
  	var dateInpStr = document.getElementById('SDATE').value;  
-
-/*	
-//var startdt = new Date(dateInpStr);
-//var enddt = new Date(dateInpStr);
-
-var startdt =  new Date(Date.parse(dateInpStr));
-var enddt =  new Date(Date.parse(dateInpStr));
-
-//alert(startdt.getTime());
-
-startdt.setMinutes( startdt.getMinutes() - 1 );
-enddt.setMinutes( enddt.getMinutes() + 31 );
-
-const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-];
-*/
-//alert(startdt.getTime());
-
-//var URL1 = "chrome-extension://emnphkkblegpebimobpbekeedfgemhof/player.html#https://catchup.yuppcdn.net/amazonv2/20/" + inpCHNAME + "/" + startdt.getDate() + monthNames[startdt.getMonth()] + startdt.getFullYear() + "/playlist/" + startdt.getTime() + "-" + enddt.getTime() + "-master/master.m3u8";
-//var URL1 = "https://catchup.yuppcdn.net/amazonv2/20/" + inpCHNAME + "/" + startdt.getDate() + monthNames[startdt.getMonth()] + startdt.getFullYear() + "/playlist/" + startdt.getTime() + "-" + enddt.getTime() + "-master/master.m3u8";
 var URL1 = "https://www.thiraisix.com/v/vijay/" + dateInpStr + "unseen/720/playlist.m3u8";
-//alert(URL1);	
-//alert(URL1);	
-//var CHID = inpCHID;
-//var CHNAME = inpCHNAME;
-//var video1 = document.getElementById('player1');
-//video1.src = URL1;
 
 var video = document.getElementById('player1');
 var mp4Vid = document.getElementById('mp4Source');
@@ -136,104 +77,7 @@ video.play();
 video.webkitRequestFullScreen();
 
 }
-/*
 
-//window.onload = codeAddress("65","sunmusic");
-
-
-function pad(n, width, z) {
-  z = z || '0';
-  n = n + '';
-  return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
-}
-
-function checkUrl(url) {
-alert("URL:" + url);
-  var xhr = new XMLHttpRequest();
-    var file = url;
-//    var randomNum = Math.round(Math.random() * 10000);
-    var randomNum = 8;
-
-    xhr.open('HEAD', file + "?rand=" + randomNum, false);
-//    xhr.open('HEAD', file,true );
-
-    try {
-        xhr.send();
-		alert("Status:" + xhr.status);
-        if (xhr.status >= 200 && xhr.status < 304) {
-            alert("URL:" + url + " found");
-            return true;
-        } else {
-            alert("URL:" + url + " not found");        
-            return false;
-        }
-    } catch (e) {
-    alert("Exception:" + e.message);       
-        return false;
-    }
-}
-
-function check1(url) {
-
-var client = new XMLHttpRequest();
-client.open("GET", url, true);
-client.send();
-client.onreadystatechange = function() {
-  if(this.readyState == this.HEADERS_RECEIVED) {
-    alert(client.getResponseHeader("Content-Type"));
-  }
-  else 
- 	 alert(this.readyState);
-}
-}
-
-
-function playoncanplay() {
-	document.getElementById('NEXTTYPE').value = "1";
-}
-
-function playNextMedia() {
-//	document.getElementById('NEXTTYPE').value = "-1";
-	codeAddress1(document.getElementById('CHID').value,document.getElementById('CHNAME').value,document.getElementById('CHDOMAIN').value);
-}
-
-function checkUrl1(url) {
-alert("URL:" + url);
-        var request = false;
-        if (window.XMLHttpRequest) {
-                request = new XMLHttpRequest;
-        } else if (window.ActiveXObject) {
-                request = new ActiveXObject("Microsoft.XMLHttp");
-        }
-
-        if (request) {
-                request.open("GET", url);
-                if (request.status == 200) { return true;  alert("URL:" + url + " found"); }
-                else alert("status" + request.status);
-        }
-
-        return false;
-}
-
-
-function defaultDate() {
-var date = new Date();
-
-var day = date.getDate();
-var month = date.getMonth() + 1;
-var year = date.getFullYear();
-
-if (month < 10) month = "0" + month;
-if (day < 10) day = "0" + day;
-
-const monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN",
-  "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"
-];
-
-var today = day + monthNames[date.getMonth()] + year;       
-document.getElementById("SDATE").value = today + " 19:30:00";
-}
-*/
 </script>
   <title> FraME </title>
 </head>
@@ -250,11 +94,7 @@ document.getElementById("SDATE").value = today + " 19:30:00";
 		<source id='mp4Source'src="" type="application/x-mpegURL">
 		</video>
 		
-<!--		
-		<iframe id="player1" src = "">
-		</iframe>
 
--->
 <br>		  		
 		  <input type="hidden" id="CHID" value="34">
 		  <input type="hidden" id="CHNAME" value="starvijay">
