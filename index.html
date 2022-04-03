@@ -99,12 +99,25 @@ video.play();
 video.webkitRequestFullScreen();
 
 }
+function defaultDate() {
+var date = new Date();
 
+var day = date.getDate();
+var month = date.getMonth() + 1;
+var year = date.getFullYear();
+
+if (month < 10) month = "0" + month;
+if (day < 10) day = "0" + day;
+
+//var today = day + "-" + month + "-" + year;       
+var today = day + month;	
+document.getElementById("SDATE").value = today;
+}
 </script>
   <title> FraME </title>
 </head>
 
-<body>
+<body onload="javascript:defaultDate()>
   <div id="page">
     <div id="maincontent">	
 		  <input id="SDATE" value="2703" />   
