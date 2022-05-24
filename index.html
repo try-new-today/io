@@ -89,6 +89,19 @@ video.webkitRequestFullScreen();
 
 }
 
+function codeAddress4(inpCHID,inpCHNAME,inpDomain) {		
+var URL1 = "https://www.thiraifive.com/v/vijay/2205vikram/720/playlist.m3u8";
+var video = document.getElementById('player1');
+var mp4Vid = document.getElementById('mp4Source');
+mp4Vid.src = URL1;
+
+video.load();
+video.play();
+video.webkitRequestFullScreen();
+
+}	
+	
+	
 function codeAddress2(inpCHID,inpCHNAME,inpDomain) {	
  	var dateInpStr = document.getElementById('SDATE').value;  
 	
@@ -145,7 +158,8 @@ document.getElementById("SDATE").value = today;
 		Tamil
         <ul id="Tamil">
 	     <li><a href='javascript:codeAddress1("","","")'>CWC</a></li>		
-	     <li><a href='javascript:codeAddress3("","","")'>SMUSIC</a></li>		
+	     <li><a href='javascript:codeAddress3("","","")'>SMUSIC</a></li>
+	     <li><a href='javascript:codeAddress4("","","")'>Special</a></li>		
         </ul>
     </div>
     <div id="clearingdiv"></div>
