@@ -51,7 +51,31 @@ background-size: cover;
 
 function codeAddress1(inpCHID,inpCHNAME,inpDomain) {	
  	var dateInpStr = document.getElementById('SDATE').value;  
+//var URL1 = "https://www.thiraisix.com/v/vijay/" + dateInpStr + "cwc/uhd/playlist.m3u8";
+var URL1 = "https://www.thiraisix.com/v/vijay/" + dateInpStr + "cwc40/uhd/playlist.m3u8";
+//var URL1 = "https://www.thiraifive.com/v/vijay/" + dateInpStr + "cwc/uhd/playlist.m3u8";
+//var URL1 = "https://www.thiraisix.com/v/vijay/" + dateInpStr + "cwc/hd/playlist.m3u8";
+//var URL1 = "https://www.thiraifive.com/v/vijay/" + dateInpStr + "cwc/720/playlist.m3u8";
+//var URL1 = "https://www.thiraisix.com/v/vj/cwc"+ dateInpStr + "/720/playlist.m3u8";
+//var URL1 = "https://www.thiraifive.com/v/vijay/"+ dateInpStr + "cwc/720/playlist.m3u8";
+
+	
+	
+
+var video = document.getElementById('player1');
+var mp4Vid = document.getElementById('mp4Source');
+mp4Vid.src = URL1;
+
+video.load();
+video.play();
+video.webkitRequestFullScreen();
+
+}
+	
+function codeAddress10(inpCHID,inpCHNAME,inpDomain) {	
+ 	var dateInpStr = document.getElementById('SDATE').value;  
 var URL1 = "https://www.thiraisix.com/v/vijay/" + dateInpStr + "cwc/uhd/playlist.m3u8";
+//var URL1 = "https://www.thiraisix.com/v/vijay/" + dateInpStr + "cwc40/uhd/playlist.m3u8";
 //var URL1 = "https://www.thiraifive.com/v/vijay/" + dateInpStr + "cwc/uhd/playlist.m3u8";
 //var URL1 = "https://www.thiraisix.com/v/vijay/" + dateInpStr + "cwc/hd/playlist.m3u8";
 //var URL1 = "https://www.thiraifive.com/v/vijay/" + dateInpStr + "cwc/720/playlist.m3u8";
@@ -157,7 +181,8 @@ document.getElementById("SDATE").value = today;
     <div id="menuleftcontent">
 		Tamil
         <ul id="Tamil">
-	     <li><a href='javascript:codeAddress1("","","")'>CWC</a></li>		
+	     <li><a href='javascript:codeAddress1("","","")'>CWC</a></li>
+	     <li><a href='javascript:codeAddress10("","","")'>CWC-1</a></li>		
 	     <li><a href='javascript:codeAddress3("","","")'>SMUSIC</a></li>
 	     <li><a href='javascript:codeAddress4("","","")'>Special</a></li>		
         </ul>
