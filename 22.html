@@ -1,0 +1,373 @@
+
+<!DOCTYPE html>
+<html>
+<head> 
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+  <style type="text/css">
+    body {
+    font: small sans-serif;
+}
+#page {
+    margin-left: 200px;
+    background-color: #F0F0F0;
+}
+#maincontent {
+    float: right;
+    width: 100%;
+}
+#menuleftcontent {
+    float: left;
+    width: 200px;
+    margin-left: -200px;
+    background-color: #CCCCCC;
+}
+#clearingdiv {
+    clear: both;
+}
+
+video {    
+	min-width: 50%; 
+	min-height: 50%;	
+width: 440; 
+height: 320; 
+background-size: cover;
+} 
+
+
+  </style>
+<script type="text/javascript">
+
+ function doAdelay()
+ {
+ setTimeout(function(){return true;},300000);
+
+ }
+/*
+function codeAddress1(inpCHID,inpCHNAME){
+	alert(document.getElementById('DOMAIN').value);
+
+codeAddress1(inpCHID,inpCHNAME,document.getElementById('DOMAIN').value);
+}
+*/
+function codeAddress1(inpCHID,inpCHNAME,inpDomain) {
+	
+        var monthName = {
+            mmm: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        };
+    
+
+    var str = document.getElementById('STIME').value;
+    var res = str.split(":");
+
+ 	var dateInpStr = document.getElementById('SDATE').value;  
+	var dateRes = dateInpStr.split("-");
+	
+
+var startDateTime = new Date(dateInpStr + "T" + str) - 60000;// - 16200000;
+var endDateTime = new Date(dateInpStr + "T" + str) + 1920000;
+//alert(dateInpStr + + ":" + str + " -- " + startDateTime);
+var startTime = startDateTime.valueOf();
+var endTime = startTime + 1920000;
+
+var curr_hour = parseInt(res[0]);
+var curr_min = parseInt(res[1]);
+var curr_sec = parseInt(res[2]);
+var curr_year = dateRes[0];
+var curr_month = parseInt(dateRes[1]);
+var curr_date= parseInt(dateRes[2]);
+var set_min = "";
+//alert (curr_hour + ":" +curr_min );
+if(curr_hour==0 && curr_min ==0) {
+	var _sDate = new Date( new Date(dateInpStr + "T" + str) - 60000);
+	curr_month = _sDate.getMonth()+1;
+	curr_date = _sDate.getDate();
+	curr_year = _sDate.getFullYear();
+}
+//curr_date = (curr_hour==0 && curr_min ==0) ? curr_date - 1 : curr_date;
+
+var mmm_month = monthName.mmm[curr_month-1];
+
+//var URL1 = "http://"+ inpDomain + "/"+ CHNAME+"/"+ CHID +"_" + pad(curr_year,2) + pad(curr_month,2) +pad(curr_date,2)+ pad(curr_hour,2) + pad(set_min,2) + "00.mp4";
+var revisedDate = pad(curr_date,2) + mmm_month + curr_year;
+var URL = "https://"+ inpDomain + "/"+ inpCHNAME+ "/"+ revisedDate + "/playlist/" + startTime + "-" + endTime + "-" + inpCHID + ".m3u8";
+//alert("URL:" + URL);
+document.getElementById('CHID').value = inpCHID;
+document.getElementById('CHNAME').value = inpCHNAME;
+document.getElementById('CHDOMAIN').value = inpDomain;
+document.getElementById('SDATE').value = dateInpStr;
+document.getElementById('STIME').value = (curr_min==0)?pad(curr_hour,2)+":30:00": pad(curr_hour+1,2)+":00:00";
+
+var start_min = 0; 
+start_min = (startTime * 60) + curr_sec ;
+//URL = URL1 + "#t="+start_min;
+document.getElementById('URL1').value = URL;
+//document.getElementById('player1').addEventListener('ended',codeAddress(CHID,CHNAME),false);
+var video1 = document.getElementById('player1');
+var mp4Vid1 = document.getElementById('mp4Source1');
+mp4Vid1.src = URL;
+video1.load();
+video1.play();
+
+}
+
+
+
+//window.onload = codeAddress("65","sunmusic");
+
+
+function pad(n, width, z) {
+  z = z || '0';
+  n = n + '';
+  return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+}
+/*
+function checkUrl(url) {
+alert("URL:" + url);
+  var xhr = new XMLHttpRequest();
+    var file = url;
+//    var randomNum = Math.round(Math.random() * 10000);
+    var randomNum = 8;
+
+    xhr.open('HEAD', file + "?rand=" + randomNum, false);
+//    xhr.open('HEAD', file,true );
+
+    try {
+        xhr.send();
+		alert("Status:" + xhr.status);
+        if (xhr.status >= 200 && xhr.status < 304) {
+            alert("URL:" + url + " found");
+            return true;
+        } else {
+            alert("URL:" + url + " not found");        
+            return false;
+        }
+    } catch (e) {
+    alert("Exception:" + e.message);       
+        return false;
+    }
+}
+
+function check1(url) {
+
+var client = new XMLHttpRequest();
+client.open("GET", url, true);
+client.send();
+client.onreadystatechange = function() {
+  if(this.readyState == this.HEADERS_RECEIVED) {
+    alert(client.getResponseHeader("Content-Type"));
+  }
+  else 
+ 	 alert(this.readyState);
+}
+}
+*/
+
+function playoncanplay() {
+	document.getElementById('NEXTTYPE').value = "1";
+}
+
+function playNextMedia() {
+//	document.getElementById('NEXTTYPE').value = "-1";
+	codeAddress1(document.getElementById('CHID').value,document.getElementById('CHNAME').value,document.getElementById('CHDOMAIN').value);
+}
+/*
+function checkUrl1(url) {
+alert("URL:" + url);
+        var request = false;
+        if (window.XMLHttpRequest) {
+                request = new XMLHttpRequest;
+        } else if (window.ActiveXObject) {
+                request = new ActiveXObject("Microsoft.XMLHttp");
+        }
+
+        if (request) {
+                request.open("GET", url);
+                if (request.status == 200) { return true;  alert("URL:" + url + " found"); }
+                else alert("status" + request.status);
+        }
+
+        return false;
+}
+*/
+
+function defaultDate() {
+var date = new Date();
+
+var day = date.getDate();
+var month = date.getMonth() + 1;
+var year = date.getFullYear();
+
+if (month < 10) month = "0" + month;
+if (day < 10) day = "0" + day;
+var today = year + "-" + month + "-" + day;       
+//var today = day + "-" + month + "-" + year;       
+document.getElementById("SDATE").value = today;
+}
+</script>
+  <title> FraME </title>
+</head>
+
+<body onload="javascript:defaultDate()">
+  <div id="page">
+    <div id="maincontent">	
+		  <input id="SDATE" value="25-11-2022" />   
+		  <input id="STIME" value="00:00:00" />
+		  <input type="hidden" id="DOMAIN" value="akamaihd.ns3.yuppcdn.net" />	  
+		<H1> Main video </H1>  
+		<video id="player1" controls autoplay>
+		<source id='mp4Source1'src="" type="video/mp4">
+		</video>
+				
+		  <input type="hidden" id="CHID" value="2500">
+		  <input type="hidden" id="CHNAME" value="starvijay">
+		  <input type="hidden" id="CHDOMAIN" value="akamaihd.ns3.yuppcdn.net">
+		  <input type="hidden" id="OFFVALUE" value="0">
+		  <input type="hidden" id="NEXTTYPE" value="0">
+		  <input type="hidden" id="URL1" value="NA">
+
+		  
+    </div>
+    <div id="menuleftcontent">
+		Tamil
+        <ul id="Tamil">
+<!--        
+	     <li><a href='javascript:codeAddress1("57","adityatv","akamaihd.ns4.yuppcdn.net")'>AdityaTV</a></li>
+	     <li><a href='javascript:codeAddress1("164","siripoli","akamaihd.ns3.yuppcdn.net")'>Siripoli</a></li>	     
+	     <li><a href='javascript:codeAddress1("29","jayamax","akamaihd.ns.yuppcdn.net")'>JayaMax</a></li>
+	     <li><a href='javascript:codeAddress1("31","jayamovies","akamaihd.ns.yuppcdn.net")'>JayaMovies</a></li>
+	     <li><a href='javascript:codeAddress1("25","jayatv","akamaihd.ns3.yuppcdn.net")'>JayaTV</a></li>         	     	     			     	     
+	     <li><a href='javascript:codeAddress1("94","jayaplus","akamaihd.ns5.yuppcdn.net")'>jayaplus</a></li>
+	     <li><a href='javascript:codeAddress1("8","ktv","akamaihd.ns3.yuppcdn.net")'>KTV</a></li>
+	     <li><a href='javascript:codeAddress1("340","ktvhd","akamaihd.ns5.yuppcdn.net")'>KTV HD</a></li>	     
+	     <li><a href='javascript:codeAddress1("28","rajdigitalplus","akamaihd.ns.yuppcdn.net")'>RajDigitalPlus</a></li>
+	     <li><a href='javascript:codeAddress1("27","rajtv","akamaihd.ns.yuppcdn.net")'>RajTV</a></li>
+	     <li><a href='javascript:codeAddress1("89","rajmusictamil","akamaihd.ns5.yuppcdn.net")'>rajmusictamil</a></li>
+	     <li><a href='javascript:codeAddress1("112","sankaratamil","catchup.ns1.yuppcdn.net")'>sankaratamil</a></li>
+	     <li><a href='javascript:codeAddress1("34","starvijay","akamaihd.ns3.yuppcdn.net")'>StarVijay</a></li>
+	     -->
+	     <li><a href='javascript:codeAddress1("2500","sunmusichd","yupptvcatchupire.akamaized.net")'>SunMusicHD</a></li>	     
+<!--
+	     <li><a href='javascript:codeAddress1("65","sunmusic","akamaihd.ns4.yuppcdn.net")'>SunMusic</a></li>
+	     <li><a href='javascript:codeAddress1("162","murasu","akamaihd.ns3.yuppcdn.net")'>Murasu</a></li>	     
+	     <li><a href='javascript:codeAddress1("161","isaiaruvi","akamaihd.ns3.yuppcdn.net")'>isaiaruvi</a></li>	     
+	     <li><a href='javascript:codeAddress1("320","sunlife","akamaihd.ns.yuppcdn.net")'>Sun Life</a></li>	     	     	     
+	     <li><a href='javascript:codeAddress1("7","suntv","akamaihd.ns3.yuppcdn.net")'>SunTV</a></li>
+	     <li><a href='javascript:codeAddress1("338","suntvhd","akamaihd.ns5.yuppcdn.net")'>SunTV HD</a></li>	     
+	     <li><a href='javascript:codeAddress1("317","kalaignartv","akamaihd.ns3.yuppcdn.net")'>kalaignartv</a></li>	     
+	     <li><a href='javascript:codeAddress1("122","thanthitv","akamaihd.ns.yuppcdn.net")'>thanthitv</a></li>		
+	     <li><a href='javascript:codeAddress1("239","zeetamil","akamaihd.ns3.yuppcdn.net")'>zeetamil</a></li>		
+	     <li><a href='javascript:codeAddress1("325","polimertv","akamaihd.ns.yuppcdn.net")'>polimertv</a></li>	     	     	     		
+	     <li><a href='javascript:codeAddress1("315","chithiram","akamaihd.ns3.yuppcdn.net")'>chithiram</a></li>	 
+	     <li><a href='javascript:codeAddress1("368","ibcmazhalai","akamaihd.ns8.yuppcdn.net")'>IBC mazhalai</a></li>	 
+-->	     
+<!--	         	     	     			     
+	     <li><a href='javascript:codeAddress1("26","makkal","catchup.ns4.yuppcdn.net")'>Makkal</a></li>		
+-->	     
+<!--
+	     <li><a href='javascript:codeAddress1("314","captaintv","akamaihd.ns3.yuppcdn.net")'>captaintv</a></li>			     	     			     
+	     <li><a href='javascript:codeAddress1("263","kbo","akamaihd.ns.yuppcdn.net")'>Kollywood Box Office</a></li>			     	     			     	     
+	     <li><a href='javascript:codeAddress1("365","kboclassic","akamaihd.ns5.yuppcdn.net")'>Kollywood Classic</a></li>			     	     			     	     
+-->
+        </ul>
+	
+    </div>
+    <div id="clearingdiv"></div>
+</div>
+
+<script type='text/javascript'>
+
+function playemptied() {
+//	document.getElementById('NEXTTYPE').value = "0";
+alert("emptied");
+}
+
+/*
+function playloadeddata1() {
+//alert("Video Working in Link 1");
+document.getElementById('NEXTTYPE').value = "0";
+
+var video_old = document.getElementById('player2');
+var mp4Vid_old = document.getElementById('mp4Source1');
+mp4Vid_old.src = "google.com";
+video_old.load();
+video_old.play();
+
+var video = document.getElementById('player1');
+var mp4Vid = document.getElementById('mp4Source');
+
+mp4Vid.src = document.getElementById('URL1').value;
+
+video.load();
+video.play();
+
+}
+*/
+function playloadedmetadata() {
+alert("loadedmetadata");
+}
+function playplay() {
+alert("play");
+}
+function playprogress() {
+alert("progress");
+}
+
+function playabort() {
+alert("abort");
+}
+function playloadstart() {
+alert("loadstart");
+}
+function playratechange() {
+alert("ratechange");
+}
+function playsuspend() {
+alert("suspend");
+}
+function playwaiting() {
+alert("waiting");
+}
+function playdurationchange() {
+alert("durationchange");
+}
+
+function playratechange() {
+alert("ratechange");
+}
+
+function playtimeupdate() {
+alert("timeupdate");
+}
+
+    document.getElementById('player1').addEventListener('ended',playNextMedia,false);
+/* 	document.getElementById('player2').addEventListener('loadeddata',playloadeddata1,false); 
+ 	document.getElementById('player3').addEventListener('loadeddata',playloadeddata2,false); 
+ 	document.getElementById('player4').addEventListener('loadeddata',playloadeddata3,false); 
+ 	document.getElementById('player5').addEventListener('loadeddata',playloadeddata4,false); 
+*/
+/* 
+    document.getElementById('player1').addEventListener('canplay',playoncanplay,false); 
+	document.getElementById('player1').addEventListener('emptied',playemptied,false);  //2
+	document.getElementById('player1').addEventListener('loadeddata',playloadeddata,false); 
+	document.getElementById('player1').addEventListener('play',playplay,false); //3
+	document.getElementById('player1').addEventListener('progress',playprogress,false);        
+	document.getElementById('player1').addEventListener('abort',playabort,false);        
+		document.getElementById('player1').addEventListener('loadstart',playloadstart,false);     //1 //5   
+			document.getElementById('player1').addEventListener('ratechange',playratechange,false);        
+				document.getElementById('player1').addEventListener('suspend',playsuspend,false);        
+				document.getElementById('player1').addEventListener('waiting',playwaiting,false);    //4    
+				document.getElementById('player1').addEventListener('durationchange',playdurationchange,false);      
+				document.getElementById('player1').addEventListener('ratechange',playratechange,false);        
+				document.getElementById('player1').addEventListener('timeupdate',playtimeupdate,false);        
+*/					
+</script> 
+</body>
+
+</html>
+
+
