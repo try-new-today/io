@@ -168,6 +168,23 @@ video.play();
 video.webkitRequestFullScreen();
 
 }	
+
+function codeAddress20(inpCHID,inpCHNAME,inpDomain) {	
+var dateInpStr = document.getElementById('SDATE').value;  
+	
+var URL1 = "https://www.thiraifive.com/v/vijay/0412akk/720/playlist.m3u8";
+var video = document.getElementById('player1');
+var mp4Vid = document.getElementById('mp4Source');
+mp4Vid.src = URL1;
+
+video.load();
+video.play();
+video.webkitRequestFullScreen();
+
+}
+
+	
+
 	
 	
 function codeAddress2(inpCHID,inpCHNAME,inpDomain) {	
@@ -232,7 +249,8 @@ document.getElementById("SDATE").value = today;
 	     <li><a href='javascript:codeAddress5("","","")'>V-Pat</a></li>	
 	     <li><a href='javascript:codeAddress6("","","")'>V-Pri</a></li>	
 	     <li><a href='javascript:codeAddress7("","","")'>V-Sar</a></li>			
-	     <li><a href='javascript:codeAddress8("","","")'>V-Thu</a></li>					
+	     <li><a href='javascript:codeAddress8("","","")'>V-Thu</a></li>	
+	     <li><a href='javascript:codeAddress20("","","")'>AKK</a></li>			
         </ul>
     </div>
     <div id="clearingdiv"></div>
