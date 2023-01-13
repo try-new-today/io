@@ -103,10 +103,12 @@ var curr_date= parseInt(dateRes[2]);
 var set_min = "";
 if(curr_hour==0 && curr_min ==0) {
 	var _sDate = new Date( new Date(dateInpStr + "T" + str) - 60000);
-	curr_month = _sDate.getMonth()+1;
+	curr_month = _sDate.getMonth()+1;	
 	curr_date = _sDate.getDate();
 	curr_year = _sDate.getFullYear();
 }
+
+if(curr_hour>=19) curr_date = curr_date + 1;
 
 var mmm_month = monthName.mmm[curr_month-1];
 
